@@ -1,5 +1,5 @@
 # NFCtoQuartzy
-A tiny workflow that lets anyone reorder common lab supplies by tapping an NFC tag (or scanning a QR code). The workflow makes use of Cloudflare Worker.
+A tiny workflow that lets lab members reorder common lab supplies by tapping an NFC tag (or scanning a QR code). The workflow makes use of Cloudflare Worker.
 
 When a tag is scanned:
 
@@ -23,6 +23,10 @@ https://<worker>/reorder?code=...&qty=...&ts=...&sig=...
       ▼
   "Request submitted" page + link to Quartzy
 ```
+---
+We currently use the following NFC tags: https://www.amazon.com/dp/B09YR1BVYQ
+NFC tags can be programmed with any NFC capable Smartphone including iPhone and Android devices.
+On iOS, we use NFC Tools to program the NFC tags.
 
 ---
 
