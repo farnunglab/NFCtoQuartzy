@@ -63,12 +63,90 @@ Security highlights:
 > 🔐 Never commit secrets to source control. Use Wrangler **secrets** for sensitive values (see below).
 
 ---
+## Quick Setup: Wrangler + Cloudflare Workers (Steps 1–4)
 
-## Configuration
+## 1) Basic requirements
+
+- A **Cloudflare account** (free is fine).
+- **Node.js** and **npm** installed.
+- (Optional) **Git** for version control.
+- (Optional) A code editor (VS Code, etc.).
+
+Verify your tools:
+
+```bash
+node -v
+npm -v
+```
+
+
+## 2) Install Wrangler
+
+Use a **local (per-project)** install (recommended), or run with `npx` on demand.
+
+**Per-project install**
+```bash
+# if you're starting fresh
+mkdir my-project && cd my-project
+npm init -y
+
+# add wrangler to devDependencies
+npm i -D wrangler@latest
+
+# confirm it works
+npx wrangler --version
+```
+
+**On-demand (no install)**
+```bash
+npx wrangler --version
+```
+
+## 3) Create a new Worker project
+
+Use **C3** (`create-cloudflare`) to scaffold a Worker:
+
+```bash
+npm create cloudflare@latest -- my-worker # This will be the name of your Worker
+cd my-worker
+```
+
+Follow the prompts (typical choices):
+- **Hello World** template  
+- **Worker** (no D1/Pages/etc. unless you want them)  
+- Choose JavaScript or TypeScript  
+- Optionally initialize a Git repo
+
+This will generate a structure like:
+```
+my-worker/
+  ├─ src/worker.ts (or index.js)
+  ├─ wrangler.jsonc
+  └─ package.json
+```
+
+## 4) Authenticate Wrangler
+
+Log in and verify your identity:
+
+```bash
+npx wrangler login
+npx wrangler whoami
+```
+
+> You’ll be redirected to your browser to grant access. After logging in, `whoami` should print your Cloudflare account info.
+
+You're now ready to run `npx wrangler dev` (local preview) and `npx wrangler deploy` (publish).
+
+---
+
+## Configuration of the Worker
+
+Add the `wrangler.jsonc` to your folder and `worker.ts` to your src folder.
 
 ### 1) Worker settings (`wrangler.jsonc`)
 
-This project uses JSONC (JSON with comments). Make sure to edit the name of your app in `wrangler.jsonc`.
+This project uses JSONC (JSON with comments). Make sure to edit the name of your app in `wrangler.jsonc` according to the name that you gave when you generated the Worker project.
 
 ### 2) KV Namespace
 
@@ -86,10 +164,10 @@ wrangler kv namespace create DEDUP --preview
 Set these with Wrangler (once per environment):
 
 ```bash
-wrangler secret put QUARTZY_ACCESS_TOKEN
-wrangler secret put HMAC_SECRET
-wrangler secret put LAB_ID
-wrangler secret put TYPE_ID   # optional per-item override exists
+wrangler secret put QUARTZY_ACCESS_TOKEN   # See under Prerequisites how to obtain it.
+wrangler secret put HMAC_SECRET    # This is a custom key phrase. You can use any key phrase you want.
+wrangler secret put LAB_ID  # See under Prerequisites how to obtain it.
+wrangler secret put TYPE_ID   # optional per-item override exists, See under Prerequisites how to obtain the TYPE_IDs from the Quartzy API.
 ```
 
 Non-sensitive defaults are already in `vars`:
@@ -107,9 +185,6 @@ wrangler whoami
 # Local dev (uses preview KV id)
 wrangler dev
 
-# Tail logs in another terminal
-wrangler tail
-
 # Deploy to Cloudflare
 wrangler deploy
 ```
@@ -124,7 +199,7 @@ wrangler deploy
 Each tag stores a plain URL to **/go** with the item `code` and `qty`. Example:
 
 ```
-https://nfc.yourlabs.workers.url.org/go?code=TIP200&qty=1
+https://nfc.yourlabs.workers.url.org/go?code=TIP200&qty=1 #This is the URL you want to write to the NFC tag.
 ```
 
 Guidelines:
