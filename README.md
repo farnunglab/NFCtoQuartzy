@@ -25,8 +25,9 @@ https://<worker>/reorder?code=...&qty=...&ts=...&sig=...
 ```
 ---
 We currently use the following NFC tags: https://www.amazon.com/dp/B09YR1BVYQ
-NFC tags can be programmed with any NFC capable Smartphone including iPhone and Android devices.
-On iOS, we use NFC Tools to program the NFC tags.
+
+NFC tags can be programmed with any NFC-capable smartphone (including iPhone and Android devices).
+On iOS, we use "NFC Tools" to program the NFC tags.
 
 ---
 
