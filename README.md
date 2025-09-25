@@ -1,4 +1,4 @@
-![NFCtoQuartzy Logo.](c965b053-b650-4531-a1a8-7e62376f6504.png)
+![NFCtoQuartzy Logo.](NFCToQuartzy_Logo.jpg)
 # NFCtoQuartzy
 A workflow that lets lab members reorder common lab supplies by tapping an NFC tag (or scanning a QR code). The workflow makes use of Cloudflare Worker.
 
