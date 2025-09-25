@@ -54,11 +54,12 @@ Security highlights:
 - A **Cloudflare** account with **Workers** and **KV** enabled.
 - **Wrangler** CLI (v3+).
 - **Quartzy** access token and the IDs you plan to submit orders to:
-  - `QUARTZY_ACCESS_TOKEN`
-  - `LAB_ID`
-  - `TYPE_ID` (can be set globally, or per-item via `item.type_id` in `CATALOG`)
+  - `QUARTZY_ACCESS_TOKEN`, can be obtained from here: https://app.quartzy.com/profile/access-tokens
+  - `LAB_ID`, can be obtained by following the linked guide: https://docs.quartzy.com/guides/org-and-lab-ids
+  - `TYPE_ID` (can be set globally, or per-item via `item.type_id` in `CATALOG`), can be obtained by running the following in a Terminal: `curl -s 'https://api.quartzy.com/types?lab_id=<LAB_ID>' \
+  -H 'Access-Token: <QUARTZY_ACCESS_TOKEN>' | jq '.[] | {id, name}'`. Make sure to add your `LAB_ID` and  `QUARTZY_ACCESS_TOKEN`.
 
-> 🔐 Never commit secrets to source control. Use Wrangler **secrets** for sensitive values.
+> 🔐 Never commit secrets to source control. Use Wrangler **secrets** for sensitive values (see below).
 
 ---
 
@@ -66,7 +67,7 @@ Security highlights:
 
 ### 1) Worker settings (`wrangler.jsonc`)
 
-This project uses JSONC (JSON with comments). make Sure to edit the name of your app:
+This project uses JSONC (JSON with comments). Make sure to edit the name of your app in `wrangler.jsonc`.
 
 ### 2) KV Namespace
 
