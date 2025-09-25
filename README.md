@@ -65,7 +65,7 @@ Security highlights:
 ---
 ## Quick Setup: Wrangler + Cloudflare Workers (Steps 1–4)
 
-## 1) Basic requirements
+### 1) Basic requirements
 
 - A **Cloudflare account** (free is fine).
 - **Node.js** and **npm** installed.
@@ -80,7 +80,7 @@ npm -v
 ```
 
 
-## 2) Install Wrangler
+### 2) Install Wrangler
 
 Use a **local (per-project)** install (recommended), or run with `npx` on demand.
 
@@ -102,7 +102,7 @@ npx wrangler --version
 npx wrangler --version
 ```
 
-## 3) Create a new Worker project
+### 3) Create a new Worker project
 
 Use **C3** (`create-cloudflare`) to scaffold a Worker:
 
@@ -125,7 +125,7 @@ my-worker/
   └─ package.json
 ```
 
-## 4) Authenticate Wrangler
+### 4) Authenticate Wrangler
 
 Log in and verify your identity:
 
