@@ -214,7 +214,7 @@ Guidelines:
 
 ## Customizing the catalog
 
-Items live in the Worker as:
+Items live in the worker.ts as:
 
 ```js
 const CATALOG = {
