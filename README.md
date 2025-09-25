@@ -4,7 +4,7 @@ A workflow that lets lab members reorder common lab supplies by tapping an NFC t
 
 When a tag is scanned:
 
-1. The phone opens a URL encoding for a catalog item like https://"your-worker-domain"/go?code=TIP200&qty=1.
+1. The phone opens a URL encoding for a catalog item.
 2. The Worker verifies the signature, de‑duplicates repeats, and calls the Quartzy API to create an Order Request.
 4. The user sees a confirmation page with a link to the item in Quartzy.
 
